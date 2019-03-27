@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import './common/touch_callback.dart';
 
 class Search extends StatefulWidget{
   @override
@@ -7,6 +7,24 @@ class Search extends StatefulWidget{
 }
 
 class SearchState extends State<Search>{
+
+  FocusNode focusNode = new FocusNode();
+  _requestFocus(){
+    FocusScope.of(context).requestFocus(focusNode);
+    return focusNode;
+  }
+
+  _getText(String text){
+    return TouchCallBack(
+      isfeed: false,
+      onPressed: (){},
+      child: Text(
+        text,
+        style: TextStyle(fontSize: 14,color: Color(0xff1aad19)),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -18,6 +36,20 @@ class SearchState extends State<Search>{
           children: <Widget>[
             Stack(
               children: <Widget>[
+                TouchCallBack(
+                  isfeed: false,
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    height: 45,
+                    margin: const EdgeInsets.only(left: 12,right: 10),
+                    child: Icon(
+                      Icons.chevron_left,color: Colors.black,size: 30,
+                    ),
+                  ),
+                ),
+
                 Container(
                   alignment: Alignment.centerLeft,
                   height: 45,
@@ -30,6 +62,7 @@ class SearchState extends State<Search>{
                     children: <Widget>[
                       Expanded(
                         child: TextField(
+                          focusNode: _requestFocus(),
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16
@@ -65,18 +98,9 @@ class SearchState extends State<Search>{
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Text(
-                    "小程序",
-
-                  ),
-                  Text(
-                    "小程序",
-
-                  ),
-                  Text(
-                    "小程序",
-
-                  )
+                  _getText("朋友圈"),
+                  _getText("文章"),
+                  _getText("公众号")
                 ],
               ),
             ),
@@ -85,18 +109,9 @@ class SearchState extends State<Search>{
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Text(
-                    "小程序",
-
-                  ),
-                  Text(
-                    "小程序",
-
-                  ),
-                  Text(
-                    "小程序",
-
-                  )
+                  _getText("小程序"),
+                  _getText("音乐"),
+                  _getText("表情")
                 ],
               ),
             )

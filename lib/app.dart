@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './chat/message_page.dart';
 
 class App extends StatefulWidget {
   @override
@@ -10,6 +11,18 @@ class App extends StatefulWidget {
 
 class MainState extends State<App> {
   var _currentIndex = 0;
+
+  MessagePage message;
+
+  currentPage(){
+    switch(_currentIndex){
+      case 0:
+        if(message == null){
+          message = new MessagePage();
+        }
+        return message;
+    }
+  }
 
   _popupMenuItem(String title, {String imagePath, IconData icon}) {
     return PopupMenuItem(
@@ -41,26 +54,6 @@ class MainState extends State<App> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return new Scaffold(
-      body: Center(
-        child: Padding(
-            padding: new EdgeInsets.only(top: 80),
-          child: Column(
-            children: <Widget>[
-              Image.network(
-                "https://ws2.sinaimg.cn/large/9150e4e5ly1ffbfs6gnlgj204g044746.jpg",
-                width: 200,
-                height: 200,
-              ),
-              Image.network(
-                "https://ws1.sinaimg.cn/large/9150e4e5ly1fumazpa7hxg205i058mx6.gif",
-                width: 200,
-                height: 200,
-              ),
-              new Text("你暂时没有信息")
-            ],
-          ),
-        )
-      ),
       appBar: new AppBar(
         title: new Text("微信"),
         actions: <Widget>[
@@ -95,6 +88,7 @@ class MainState extends State<App> {
           onTap: ((index) {
             setState(() {
               _currentIndex = index;
+              print(_currentIndex);
             });
           }),
           items: [
@@ -178,7 +172,9 @@ class MainState extends State<App> {
                         width: 32,
                         height: 28,
                       ))
-          ]),
+          ]
+        ),
+      body: currentPage(),
     );
   }
 }

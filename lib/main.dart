@@ -3,6 +3,7 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'loading.dart';
 import './app.dart';
 import './search.dart';
+import 'chat/chat_page.dart';
 
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
@@ -11,6 +12,7 @@ void main() => runApp(MaterialApp(
   routes: <String,WidgetBuilder>{
     "app":(BuildContext context) => new App(),
     'search':(BuildContext context) => new Search(),
+//    'chat-page':(BuildContext context) => new ChatPage(),
     "/friends":(_) => new WebviewScaffold(
         url: "https//weixin.qq.com/",
       appBar: new AppBar(

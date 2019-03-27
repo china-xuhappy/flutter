@@ -8,18 +8,19 @@ class LoadingPage extends StatefulWidget{
     // TODO: implement createState
     return new _LoadingState();
   }
+
 }
 class _LoadingState extends State<LoadingPage>{
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+
     new Future.delayed(Duration(seconds: 3),(){
       print("3miao");
       Navigator.of(context).pushReplacementNamed("app");
     });
   }
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -27,4 +28,5 @@ class _LoadingState extends State<LoadingPage>{
       child: new Image.asset("images/loading.jpg"),
     );
   }
+
 }
